@@ -759,5 +759,21 @@
   "Auto_Extract_service_is_disabled_in_Download_Station": {
     "message": "Download Station 未開啟自動解壓縮功能",
     "description": "Explanatory text for disabled input field in add-download form."
+  },
+  "Theme": {
+    "message": "主題",
+    "description": "Label for theme mode selector in settings."
+  },
+  "Theme_auto": {
+    "message": "自動",
+    "description": "Theme option that follows system preference."
+  },
+  "Theme_light": {
+    "message": "淺色",
+    "description": "Light theme option."
+  },
+  "Theme_dark": {
+    "message": "深色",
+    "description": "Dark theme option."
   }
 }

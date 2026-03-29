@@ -720,5 +720,21 @@
   "Please_be_patient_this_may_take_some_time": {
     "message": "Veuillez patienter, cela peut prendre quelques instants...",
     "description": "Notification body text."
+  },
+  "Theme": {
+    "message": "Thème",
+    "description": "Label for theme mode selector in settings."
+  },
+  "Theme_auto": {
+    "message": "Automatique",
+    "description": "Theme option that follows system preference."
+  },
+  "Theme_light": {
+    "message": "Clair",
+    "description": "Light theme option."
+  },
+  "Theme_dark": {
+    "message": "Sombre",
+    "description": "Dark theme option."
   }
 }

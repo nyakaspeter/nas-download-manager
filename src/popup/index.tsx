@@ -4,6 +4,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import { onStoredStateChange, Settings, State } from "../common/state";
+import { applyTheme } from "../common/theme";
 import { FatalError } from "./FatalError";
 import { FatalErrorWrapper } from "./FatalErrorWrapper";
 import { PopupWrapper } from "./PopupWrapper";
@@ -21,6 +22,7 @@ setInterval(() => {
 }, 5000);
 
 onStoredStateChange((storedState) => {
+  applyTheme(storedState.settings.themeMode);
   try {
     ReactDOM.render(
       <FatalErrorWrapper state={storedState}>

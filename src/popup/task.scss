@@ -26,7 +26,7 @@
 
       .status {
         font-size: 0.8em;
-        color: $color-text-faded;
+        color: var(--color-text-faded);
 
         .error-icon {
           margin-right: 3px;
@@ -91,7 +91,7 @@
       left: 0;
       bottom: 0;
       right: 0;
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: var(--color-bar-bg);
     }
   }
 

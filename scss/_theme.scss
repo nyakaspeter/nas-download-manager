@@ -1,0 +1,63 @@
+// CSS custom properties for theming. Light is the default, dark overrides below.
+
+:root {
+  --color-background: #fbfbfb;
+  --color-text: #111;
+  --color-text-faded: #444;
+  --color-text-extra-faded: #999;
+  --color-border: rgba(0, 0, 0, 0.2);
+  --color-separator: rgba(0, 0, 0, 0.15);
+  --color-field-bg: #fff;
+  --color-field-border: #b1b1b1;
+  --color-field-hover-border: #858585;
+  --color-field-disabled-bg: #eee;
+  --color-field-disabled-text: #999;
+  --color-button-bg: #f9f9f9;
+  --color-button-border: #999;
+  --color-button-disabled-border: #ccc;
+  --color-button-hover-bg: #f0f0f0;
+  --color-button-active-bg: #ddd;
+  --color-card-bg: white;
+  --color-card-border: #aaa;
+  --color-bar-bg: rgba(0, 0, 0, 0.1);
+  --color-backdrop: rgba(0, 0, 0, 0.2);
+  --color-icon-hover-bg: rgba(0, 0, 0, 0.1);
+  --color-select-bg: #fff;
+  --color-select-arrow: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfgCxACEBnQdLlTAAAAeklEQVRo3u3QyQ2AMAwFUVMBddETW1U0RgHhwAFFbLYUOxLMyzXKH0UEAAAAAP6uUd1qpTO/nGSRtVzoLMl4+tJ/ZUsoPm9LcJnXJwxe87oE1/n3BPf554SQ+fuEMWr+OiF0/pwQPp8nTDXmj4Rq83tC1XkAAAAAX7ABm5GrRSevg7kAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTYtMTEtMTZUMDI6MTY6MjUtMDU6MDAzbD3PAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE2LTExLTE2VDAyOjE2OjI1LTA1OjAwQjGFcwAAAABJRU5ErkJggg==");
+}
+
+@mixin dark-theme {
+  --color-background: #1e1e1e;
+  --color-text: #e0e0e0;
+  --color-text-faded: #aaa;
+  --color-text-extra-faded: #777;
+  --color-border: rgba(255, 255, 255, 0.15);
+  --color-separator: rgba(255, 255, 255, 0.1);
+  --color-field-bg: #2a2a2a;
+  --color-field-border: #555;
+  --color-field-hover-border: #777;
+  --color-field-disabled-bg: #333;
+  --color-field-disabled-text: #666;
+  --color-button-bg: #333;
+  --color-button-border: #555;
+  --color-button-disabled-border: #444;
+  --color-button-hover-bg: #3a3a3a;
+  --color-button-active-bg: #444;
+  --color-card-bg: #2a2a2a;
+  --color-card-border: #555;
+  --color-bar-bg: rgba(255, 255, 255, 0.1);
+  --color-backdrop: rgba(0, 0, 0, 0.5);
+  --color-icon-hover-bg: rgba(255, 255, 255, 0.1);
+  --color-select-bg: #2a2a2a;
+  --color-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5'%3E%3Cpath d='M0 0l5 5 5-5z' fill='%23aaa'/%3E%3C/svg%3E");
+}
+
+html.theme-dark {
+  @include dark-theme;
+}
+
+html.theme-auto {
+  @media (prefers-color-scheme: dark) {
+    @include dark-theme;
+  }
+}

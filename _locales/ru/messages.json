@@ -633,5 +633,21 @@
   "No_such_task_of_the_file_operation": {
     "message": "Нет такой задачи работы с файлом.",
     "description": "Сообщение об ошибке при сбое вызова Synology API."
+  },
+  "Theme": {
+    "message": "Тема",
+    "description": "Label for theme mode selector in settings."
+  },
+  "Theme_auto": {
+    "message": "Авто",
+    "description": "Theme option that follows system preference."
+  },
+  "Theme_light": {
+    "message": "Светлая",
+    "description": "Light theme option."
+  },
+  "Theme_dark": {
+    "message": "Тёмная",
+    "description": "Dark theme option."
   }
 }

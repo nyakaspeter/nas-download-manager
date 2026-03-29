@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  color: $color-text-faded;
+  color: var(--color-text-faded);
   padding: 10px;
 
   .main-icon {

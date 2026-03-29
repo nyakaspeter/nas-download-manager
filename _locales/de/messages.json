@@ -662,5 +662,21 @@
   "No_directories": {
     "message": "Keine Verzeichnisse.",
     "description": "Message in advanced add form if there are no root directories."
+  },
+  "Theme": {
+    "message": "Design",
+    "description": "Label for theme mode selector in settings."
+  },
+  "Theme_auto": {
+    "message": "Automatisch",
+    "description": "Theme option that follows system preference."
+  },
+  "Theme_light": {
+    "message": "Hell",
+    "description": "Light theme option."
+  },
+  "Theme_dark": {
+    "message": "Dunkel",
+    "description": "Dark theme option."
   }
 }

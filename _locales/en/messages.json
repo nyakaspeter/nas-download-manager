@@ -759,5 +759,21 @@
   "Auto_Extract_service_is_disabled_in_Download_Station": {
     "message": "Auto Extract service is disabled in Download Station.",
     "description": "Explanatory text for disabled input field in add-download form."
+  },
+  "Theme": {
+    "message": "Theme",
+    "description": "Label for theme mode selector in settings."
+  },
+  "Theme_auto": {
+    "message": "Auto",
+    "description": "Theme option that follows system preference."
+  },
+  "Theme_light": {
+    "message": "Light",
+    "description": "Light theme option."
+  },
+  "Theme_dark": {
+    "message": "Dark",
+    "description": "Dark theme option."
   }
 }

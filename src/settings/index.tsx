@@ -4,6 +4,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import { State, Logging, onStoredStateChange, Settings } from "../common/state";
+import { applyTheme } from "../common/theme";
 import { SettingsForm } from "./SettingsForm";
 import { saveLastSevereError } from "../common/errorHandlers";
 
@@ -29,6 +30,7 @@ async function saveSettings(settings: Settings): Promise<boolean> {
 const ELEMENT = document.getElementById("body")!;
 
 onStoredStateChange((state) => {
+  applyTheme(state.settings.themeMode);
   ReactDOM.render(
     <SettingsForm
       extensionState={state}

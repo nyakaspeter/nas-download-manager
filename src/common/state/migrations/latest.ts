@@ -7,7 +7,8 @@ export {
   State,
   ConnectionSettings,
   Protocol,
+  ThemeMode,
   Logging,
   StateVersion,
   BadgeDisplayType,
-} from "./8";
+} from "./9";

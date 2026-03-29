@@ -11,6 +11,7 @@ import {
   SETTING_NAMES,
   BadgeDisplayType,
   ConnectionSettings,
+  ThemeMode,
 } from "../common/state";
 import { BUG_REPORT_URL } from "../common/constants";
 import { DOWNLOAD_ONLY_PROTOCOLS } from "../common/apis/protocols";
@@ -118,6 +119,21 @@ export class SettingsForm extends React.PureComponent<Props, State> {
               DOWNLOAD_ONLY_PROTOCOLS.join(", "),
             ])}
           />
+
+          <li>
+            <span>{browser.i18n.getMessage("Theme")}</span>
+            <select
+              className="theme-select"
+              value={this.props.extensionState.settings.themeMode}
+              onChange={(e) => {
+                this.saveSettings({ themeMode: e.currentTarget.value as ThemeMode });
+              }}
+            >
+              <option value="auto">{browser.i18n.getMessage("Theme_auto")}</option>
+              <option value="light">{browser.i18n.getMessage("Theme_light")}</option>
+              <option value="dark">{browser.i18n.getMessage("Theme_dark")}</option>
+            </select>
+          </li>
         </SettingsList>
 
         {this.maybeRenderDebuggingOutputAndSeparator()}

@@ -5,7 +5,7 @@
 header {
   p {
     font-size: 0.9em;
-    color: #999;
+    color: var(--color-text-faded);
   }
   h3 {
     margin-bottom: 0;
@@ -49,7 +49,7 @@ ul.settings-list {
 }
 
 .horizontal-separator {
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: var(--color-separator);
   height: 1px;
 }
 
@@ -112,6 +112,10 @@ ul.settings-list {
 
 .wrong-polling-interval {
   margin-left: 5px;
+}
+
+.theme-select {
+  margin-left: 10px;
 }
 
 textarea.debugging-output {

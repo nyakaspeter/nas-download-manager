@@ -13,8 +13,9 @@ select {
     height: 24px;
   }
 
-  background-color: #fff;
-  border: 1px solid #b1b1b1;
+  background-color: var(--color-field-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-field-border);
   box-shadow: 0 0 0 0 rgba(97, 181, 255, 0);
   font: caption;
   font-size: 1em;
@@ -23,13 +24,13 @@ select {
   transition-property: box-shadow;
 
   &.hover {
-    border: 1px solid #858585;
+    border: 1px solid var(--color-field-hover-border);
   }
 
   &.disabled,
   &:disabled {
-    color: #999;
-    background-color: #eee;
+    color: var(--color-field-disabled-text);
+    background-color: var(--color-field-disabled-bg);
   }
 
   &.focused,
@@ -40,6 +41,6 @@ select {
   }
 
   &:not(:disabled):hover {
-    border: 1px solid #858585;
+    border: 1px solid var(--color-field-hover-border);
   }
 }
