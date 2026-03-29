@@ -80,8 +80,18 @@ export const ClientRequestResult = {
 export class SynologyClient {
   private loginPromise: Promise<ClientRequestResult<AuthLoginResponse>> | undefined;
   private settingsVersion: number = 0;
+  public onLoginSuccess: ((sid: string) => void) | undefined;
 
   constructor(private settings: Partial<SynologyClientSettings>) {}
+
+  // Restore a previously-obtained SID so we can skip re-login after service worker restart.
+  public restoreSession(sid: string) {
+    this.loginPromise = Promise.resolve({
+      success: true as const,
+      data: { sid },
+      meta: { apiGroup: "Auth", method: "login", version: 2 },
+    });
+  }
 
   public partiallyUpdateSettings(settings: Partial<SynologyClientSettings>) {
     const updatedSettings = { ...this.settings, ...settings };
@@ -136,6 +146,12 @@ export class SynologyClient {
           } else {
             return response;
           }
+        })
+        .then((response) => {
+          if (response.success && this.onLoginSuccess) {
+            this.onLoginSuccess(response.data.sid);
+          }
+          return response;
         })
         .catch((e) => ConnectionFailure.from(e));
     }

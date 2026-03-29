@@ -6,7 +6,8 @@ export {
   Settings,
   State,
   ConnectionSettings,
+  Protocol,
   Logging,
   StateVersion,
   BadgeDisplayType,
-} from "./7";
+} from "./8";

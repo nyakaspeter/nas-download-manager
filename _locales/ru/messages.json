@@ -360,8 +360,8 @@
     "message": "секунд",
     "description": "Суффикс для встроенного поля настройки интервала уведомления."
   },
-  "at_least_15": {
-    "message": "(не менее 15)",
+  "at_least_30": {
+    "message": "(не менее 30)",
     "description": "Сообщение об ошибке, когда интервал уведомления слишком короткий."
   },
   "Handle_opening_downloadable_link_types_ZprotocolsZ": {

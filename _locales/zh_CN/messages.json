@@ -405,8 +405,8 @@
     "message": "秒",
     "description": "Suffix for inlined notification interval setting field."
   },
-  "at_least_15": {
-    "message": "（最小间隔15秒）",
+  "at_least_30": {
+    "message": "（最小间隔30秒）",
     "description": "Error message when notification interval is too short."
   },
   "Handle_opening_downloadable_link_types_ZprotocolsZ": {

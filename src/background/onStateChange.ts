@@ -1,4 +1,3 @@
-import { default as isEqual } from "lodash/isEqual";
 import { getMutableStateSingleton } from "./backgroundState";
 import { SessionName } from "../common/apis/synology";
 import { getHostUrl, State } from "../common/state";
@@ -6,6 +5,7 @@ import { notify } from "../common/notify";
 import { pollTasks, clearCachedTasks } from "./actions";
 import { assertNever } from "../common/lang";
 import { filterTasks, matchesFilter } from "../common/filtering";
+import { saveSessionState } from "./sessionPersistence";
 
 const START_TIME = Date.now();
 
@@ -46,43 +46,41 @@ export function onStoredStateChange(storedState: State) {
     }
   }
 
-  if (!isEqual(storedState.settings.notifications, backgroundState.lastNotificationSettings)) {
-    backgroundState.lastNotificationSettings = storedState.settings.notifications;
-    clearInterval(backgroundState.notificationInterval!);
-    if (backgroundState.lastNotificationSettings.enableCompletionNotifications) {
-      backgroundState.notificationInterval = (setInterval(() => {
-        pollTasks(backgroundState.api, backgroundState.pollRequestManager);
-      }, backgroundState.lastNotificationSettings.completionPollingInterval * 1000) as any) as number;
+  // Always poll at the maximum allowed rate (30s minimum enforced by Chrome alarms API)
+  // so the badge stays up to date regardless of notification settings.
+  browser.alarms.get("poll-tasks").then((existing) => {
+    if (!existing) {
+      browser.alarms.create("poll-tasks", { periodInMinutes: 0.5 });
     }
-  }
+  });
 
   backgroundState.showNonErrorNotifications =
     storedState.settings.notifications.enableFeedbackNotifications;
 
   if (storedState.taskFetchFailureReason) {
-    browser.browserAction.setIcon({
+    browser.action.setIcon({
       path: {
-        "16": "icons/icon-16-disabled.png",
-        "32": "icons/icon-32-disabled.png",
-        "64": "icons/icon-64-disabled.png",
-        "128": "icons/icon-128-disabled.png",
-        "256": "icons/icon-256-disabled.png",
+        "16": "/icons/icon-16-disabled.png",
+        "32": "/icons/icon-32-disabled.png",
+        "64": "/icons/icon-64-disabled.png",
+        "128": "/icons/icon-128-disabled.png",
+        "256": "/icons/icon-256-disabled.png",
       },
     });
 
-    browser.browserAction.setBadgeText({
+    browser.action.setBadgeText({
       text: "",
     });
 
-    browser.browserAction.setBadgeBackgroundColor({ color: [217, 0, 0, 255] });
+    browser.action.setBadgeBackgroundColor({ color: [217, 0, 0, 255] });
   } else {
-    browser.browserAction.setIcon({
+    browser.action.setIcon({
       path: {
-        "16": "icons/icon-16.png",
-        "32": "icons/icon-32.png",
-        "64": "icons/icon-64.png",
-        "128": "icons/icon-128.png",
-        "256": "icons/icon-256.png",
+        "16": "/icons/icon-16.png",
+        "32": "/icons/icon-32.png",
+        "64": "/icons/icon-64.png",
+        "128": "/icons/icon-128.png",
+        "256": "/icons/icon-256.png",
       },
     });
 
@@ -104,11 +102,11 @@ export function onStoredStateChange(storedState: State) {
       return; // Can't `return assertNever(...)` because the linter complains.
     }
 
-    browser.browserAction.setBadgeText({
+    browser.action.setBadgeText({
       text: taskCount === 0 ? "" : taskCount.toString(),
     });
 
-    browser.browserAction.setBadgeBackgroundColor({ color: [0, 217, 0, 255] });
+    browser.action.setBadgeBackgroundColor({ color: [0, 217, 0, 255] });
   }
 
   if (
@@ -131,6 +129,7 @@ export function onStoredStateChange(storedState: State) {
         });
     }
     backgroundState.finishedTaskIds = new Set(updatedFinishedTaskIds);
+    saveSessionState({ finishedTaskIds: updatedFinishedTaskIds });
   }
 
   backgroundState.isInitializingExtension = false;

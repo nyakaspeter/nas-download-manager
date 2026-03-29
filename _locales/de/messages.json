@@ -377,8 +377,8 @@
     "message": "Sekunden",
     "description": "Suffix for inlined notification interval setting field."
   },
-  "at_least_15": {
-    "message": "(mind. 15)",
+  "at_least_30": {
+    "message": "(mind. 30)",
     "description": "Error message when notification interval is too short."
   },
   "Handle_opening_downloadable_link_types_ZprotocolsZ": {

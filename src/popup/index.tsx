@@ -18,7 +18,7 @@ function updateSettings(settings: Settings) {
 PollTasks.send();
 setInterval(() => {
   PollTasks.send();
-}, 10000);
+}, 5000);
 
 onStoredStateChange((storedState) => {
   try {

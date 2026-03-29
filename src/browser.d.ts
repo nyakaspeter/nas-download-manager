@@ -92,7 +92,7 @@ interface ContextMenusOnClickData {
   linkUrl?: string;
   mediaType?: "image" | "video" | "audio";
   menuItemId: number | string;
-  modifiers: ("Command" | "Ctrl" | "MacCtrl" | "Shift")[];
+  modifiers?: ("Command" | "Ctrl" | "MacCtrl" | "Shift")[];
   pageUrl?: string;
   parentMenuItemId?: number | string;
   selectionText?: string;
@@ -106,7 +106,6 @@ interface ContextMenusCreateOptions {
   title?: string;
   checked?: boolean;
   contexts?: ContextsMenuContextType[];
-  onclick?: (data: ContextMenusOnClickData) => void;
   parentId?: number | string;
   documentUrlPatterns?: string[];
   targetUrlPatterns?: string[];
@@ -129,23 +128,24 @@ type OnMessageListener = (
   sendResponse: (response: object) => void,
 ) => Promise<object | string | void> | boolean | void;
 
+interface Alarm {
+  name: string;
+  scheduledTime: number;
+  periodInMinutes?: number;
+}
+
+interface AlarmCreateInfo {
+  when?: number;
+  delayInMinutes?: number;
+  periodInMinutes?: number;
+}
+
+type AlarmListener = (alarm: Alarm) => void;
+
 declare const browser: {
-  extension: {
-    getURL: (relativeUrl: string) => string;
-  };
-  browserAction: {
-    setBadgeText: (options: { text: string; tabId?: number }) => void;
-    setBadgeBackgroundColor: (options: { color: string | ColorArray; tabId?: number }) => void;
-    setIcon: (options: {
-      imageData?: ImageData | Record<string, ImageData>;
-      path?: string | Record<string, string>;
-      tabId?: number;
-    }) => Promise<void>;
-  };
   runtime: {
+    getURL: (relativeUrl: string) => string;
     openOptionsPage: () => Promise<void>;
-    getBackgroundPage: () => Promise<Window | null>;
-    // This is only one of 3-4 call signatures, but it's the only one we need.
     sendMessage: (message: object) => Promise<object>;
     onMessage: {
       addListener: (listener: OnMessageListener) => void;
@@ -153,9 +153,26 @@ declare const browser: {
       hasListener: (listener: OnMessageListener) => boolean;
     };
   };
+  action: {
+    setBadgeText: (options: { text: string; tabId?: number }) => Promise<void>;
+    setBadgeBackgroundColor: (options: {
+      color: string | ColorArray;
+      tabId?: number;
+    }) => Promise<void>;
+    setIcon: (options: {
+      imageData?: ImageData | Record<string, ImageData>;
+      path?: string | Record<string, string>;
+      tabId?: number;
+    }) => Promise<void>;
+  };
   storage: {
     local: {
       get: <T>(input: null | string | string[]) => Promise<T>;
+      set: <T>(input: T) => Promise<void>;
+      clear: () => Promise<void>;
+    };
+    session: {
+      get: <T = any>(input: null | string | string[]) => Promise<T>;
       set: <T>(input: T) => Promise<void>;
       clear: () => Promise<void>;
     };
@@ -174,9 +191,34 @@ declare const browser: {
   contextMenus: {
     create: (options?: ContextMenusCreateOptions, callback?: () => void) => number | string;
     update: (id: number | string, options?: ContextMenusCreateOptions) => Promise<void>;
+    removeAll: () => Promise<void>;
+    onClicked: {
+      addListener: (
+        listener: (info: ContextMenusOnClickData, tab?: Tab) => void,
+      ) => void;
+    };
+  };
+  alarms: {
+    create: (name: string, alarmInfo: AlarmCreateInfo) => Promise<void>;
+    get: (name: string) => Promise<{ name: string; periodInMinutes?: number } | undefined>;
+    clear: (name: string) => Promise<boolean>;
+    onAlarm: {
+      addListener: (listener: AlarmListener) => void;
+    };
   };
   i18n: {
     getMessage: (messageName: string, placeholders?: (string | number)[]) => string;
     getUILanguage: () => string;
+  };
+};
+
+// chrome.storage.session is not wrapped by webextension-polyfill, so we declare the
+// minimal subset we need on the native chrome namespace.
+declare const chrome: {
+  storage: {
+    session: {
+      get: (key: string) => Promise<Record<string, any>>;
+      set: (items: Record<string, any>) => Promise<void>;
+    };
   };
 };
