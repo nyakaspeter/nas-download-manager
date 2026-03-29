@@ -23,7 +23,7 @@ jobs:
         run: echo "version=$(node -p "require('./manifest.json').version")" >> "$GITHUB_OUTPUT"
 
       - name: Package extension
-        run: zip -r nas-download-manager-${{ steps.version.outputs.version }}.zip manifest.json dist/ icons/ html/ _locales/
+        run: zip -r nas-download-manager-${{ steps.version.outputs.version }}.zip manifest.json dist/ icons/ html/ _locales/ vendor/
 
       - name: Create or update release
         uses: softprops/action-gh-release@v2
