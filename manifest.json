@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "minimum_chrome_version": "120",
-  "name": "Synology Download Manager",
+  "name": "NAS Download Manager for Synology",
   "version": "0.13.1",
   "description": "__MSG_Add_and_manage_Download_Station_tasks_on_your_Synology_DiskStation__",
   "homepage_url": "https://github.com/nyakaspeter/nas-download-manager",
@@ -18,7 +18,7 @@
     }
   ],
   "action": {
-    "default_title": "Synology Download Manager",
+    "default_title": "NAS Download Manager for Synology",
     "default_popup": "html/popup.html",
     "default_icon": {
       "16": "icons/icon-16.png",
@@ -35,7 +35,7 @@
     "16": "icons/icon-16.png",
     "32": "icons/icon-32.png",
     "64": "icons/icon-64.png",
-    "128": "icons/icon-128.png",
+    "128": "icons/icon-store-128.png",
     "256": "icons/icon-256.png"
   }
 }

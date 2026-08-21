@@ -1,10 +1,10 @@
-# Synology Download Manager
+# NAS Download Manager
 
 An open source browser extension for adding and managing Synology Download Station tasks from your browser.
 
 This repository is a maintained fork of [seansfkelley/nas-download-manager](https://github.com/seansfkelley/nas-download-manager). It keeps the original extension's functionality while updating it for current Chromium extension APIs and adding several quality-of-life improvements.
 
-Synology Download Manager requires a Synology NAS running DSM 4 or newer. It is not an official Synology product.
+NAS Download Manager requires a Synology NAS running DSM 4 or newer. It is not an official Synology product.
 
 ## Changes in this fork
 
@@ -39,7 +39,7 @@ Until a store listing for this fork is available, download a package from this r
 
 ## Privacy
 
-Synology Download Manager needs credentials for your NAS so it can communicate with Download Station. It stores extension settings locally and does not collect analytics or transmit personal information anywhere other than the NAS address you configure. See the [privacy policy and permission explanations](./PRIVACY.md).
+NAS Download Manager needs credentials for your NAS so it can communicate with Download Station. It stores extension settings locally and does not collect analytics or transmit personal information anywhere other than the NAS address you configure. See the [privacy policy and permission explanations](./PRIVACY.md).
 
 ## Development
 
@@ -121,4 +121,4 @@ For an existing translation, `./scripts/diff-messages <language code>` prints mi
 
 ## License
 
-Synology Download Manager is available under the [MIT License](./LICENSE). The fork retains the upstream project's license and attribution history.
+NAS Download Manager is available under the [MIT License](./LICENSE). The fork retains the upstream project's license and attribution history.

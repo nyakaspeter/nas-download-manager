@@ -2,7 +2,7 @@
 
 ## Getting Logs in Firefox
 
-1. Open a new tab and navigate to `about:devtools-toolbox?id=%7Bb17c0686-033c-4d03-b526-b16c99998c98%7D&type=extension`. This will open the developer tools for Synology Download Manager.
+1. Open a new tab and navigate to `about:devtools-toolbox?id=%7Bb17c0686-033c-4d03-b526-b16c99998c98%7D&type=extension`. This will open the developer tools for NAS Download Manager.
 2. Switch to the Console tab, near the top left of the view.
 3. All the logs will be presented, with the latest ones appearing at the bottom.
 
@@ -12,7 +12,7 @@ If you're able to reliably reproduce a bug, I recommend you first clear the logs
 
 1. Open a new tab and navigate to `chrome://extensions`.
 2. In the top right, toggle the Developer Mode switch on.
-3. Find Synology Download Manager in the list, and click the **service worker** link under "Inspect views". This will open the developer tools.
+3. Find NAS Download Manager in the list, and click the **service worker** link under "Inspect views". This will open the developer tools.
 4. Switch to the Console tab, near the top left of the window.
 5. All the logs will be presented, with the latest ones appearing at the bottom.
 

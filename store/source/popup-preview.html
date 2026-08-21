@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../vendor/fontawesome-free-5.0.13/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="../../vendor/fontawesome-free-5.0.13/css/fa-solid.min.css" />
+    <link rel="stylesheet" href="../../artifacts/store-preview/popup-preview.css" />
+    <style>
+      html,
+      body {
+        font: 12px Arial, sans-serif;
+      }
+    </style>
+    <title>NAS Download Manager popup capture</title>
+  </head>
+  <body>
+    <div id="body"></div>
+    <script>
+      window.addEventListener("error", (event) => {
+        document.getElementById("body").textContent = `${event.message}\n${
+          event.error?.stack ?? ""
+        }`;
+      });
+      window.addEventListener("unhandledrejection", (event) => {
+        document.getElementById("body").textContent = `${event.reason?.message ?? event.reason}\n${
+          event.reason?.stack ?? ""
+        }`;
+      });
+    </script>
+    <script src="../../artifacts/store-preview/popup-preview.js"></script>
+  </body>
+</html>

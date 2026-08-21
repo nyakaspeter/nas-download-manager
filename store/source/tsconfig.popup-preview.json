@@ -1,0 +1,12 @@
+{
+  "extends": "../../src/tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "../..",
+    "outDir": "../../artifacts/store-preview/types",
+    "declaration": false,
+    "sourceMap": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "include": ["popup-preview.tsx", "../../src/**/*.ts", "../../src/**/*.tsx"]
+}

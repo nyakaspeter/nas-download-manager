@@ -1,0 +1,270 @@
+:root {
+  --ink: #f8fafc;
+  --muted: #a8b2c1;
+  --panel: #121821;
+  --panel-2: #181f2a;
+  --line: rgba(255, 255, 255, 0.1);
+  --orange: #ff9518;
+  --green: #65df1c;
+  --green-dark: #3db80d;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background: #090d13;
+  color: var(--ink);
+  font-family: "Bahnschrift", "Segoe UI Variable", "Segoe UI", sans-serif;
+}
+
+body { display: grid; place-items: start; }
+[hidden] { display: none !important; }
+
+.artboard {
+  position: relative;
+  width: 1280px;
+  height: 800px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px),
+    radial-gradient(circle at 73% 46%, #17221d 0, #0e141c 34%, #090d13 72%);
+  background-size: 40px 40px, 40px 40px, auto;
+}
+
+.artboard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 130px rgba(0,0,0,.56);
+  z-index: 20;
+}
+
+.ambient {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  filter: blur(95px);
+  opacity: .17;
+  z-index: -1;
+}
+
+.ambient-orange { left: -260px; top: 420px; background: var(--orange); }
+.ambient-green { right: -180px; top: 120px; background: var(--green); opacity: .14; }
+
+.brand {
+  position: absolute;
+  top: 44px;
+  left: 60px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #f5f7fa;
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: .2px;
+  z-index: 5;
+}
+
+.brand img { width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 7px 13px rgba(0,0,0,.4)); }
+
+.hero-copy, .manage-copy {
+  position: absolute;
+  left: 60px;
+  top: 181px;
+  width: 565px;
+  z-index: 4;
+}
+
+.eyebrow {
+  margin: 0 0 20px;
+  color: var(--green);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 2.7px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 65px;
+  line-height: .99;
+  letter-spacing: -3.2px;
+  font-weight: 780;
+}
+
+h1 span { color: var(--orange); }
+
+.dek {
+  margin: 29px 0 0;
+  width: 520px;
+  color: var(--muted);
+  font-size: 21px;
+  line-height: 1.48;
+  font-weight: 400;
+}
+
+.nas-stage {
+  position: absolute;
+  right: 6px;
+  top: 86px;
+  width: 650px;
+  height: 650px;
+  z-index: 2;
+}
+
+.nas {
+  position: absolute;
+  width: 655px;
+  height: auto;
+  left: 0;
+  top: 30px;
+  filter: drop-shadow(0 42px 38px rgba(0,0,0,.55));
+  z-index: 3;
+}
+
+.orbit {
+  position: absolute;
+  border: 1px solid rgba(101,223,28,.19);
+  border-radius: 50%;
+  transform: rotate(-17deg);
+}
+
+.orbit-one { width: 555px; height: 310px; left: 42px; top: 165px; }
+.orbit-two { width: 650px; height: 400px; left: 0; top: 120px; opacity: .5; }
+
+.transfer-line {
+  position: absolute;
+  left: 95px;
+  top: 102px;
+  width: 420px;
+  height: 420px;
+  border: 2px solid transparent;
+  border-top-color: rgba(255,149,24,.5);
+  border-right-color: rgba(101,223,28,.4);
+  border-radius: 50%;
+  transform: rotate(20deg);
+}
+
+.transfer-dot { position: absolute; width: 9px; height: 9px; border-radius: 50%; box-shadow: 0 0 20px currentColor; }
+.transfer-dot-one { left: 181px; top: 101px; color: var(--orange); background: currentColor; }
+.transfer-dot-two { right: 86px; bottom: 185px; color: var(--green); background: currentColor; }
+
+/* Task management scene */
+.scene-manage {
+  background:
+    linear-gradient(rgba(255,255,255,.021) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.021) 1px, transparent 1px),
+    radial-gradient(circle at 80% 49%, #192520 0, #0e141c 38%, #090d13 72%);
+  background-size: 40px 40px, 40px 40px, auto;
+}
+
+.ambient-manage { right: 140px; top: 70px; opacity: .1; }
+.manage-copy { top: 171px; width: 515px; }
+.manage-copy h1 { font-size: 56px; letter-spacing: -2.8px; }
+.manage-copy .dek { width: 480px; font-size: 19px; }
+
+.benefits {
+  display: grid;
+  gap: 14px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+  color: #dce2e9;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.benefits li { display: flex; align-items: center; gap: 13px; }
+.benefits span { color: var(--orange); font-size: 11px; letter-spacing: 1.2px; }
+
+.real-popup-shell {
+  position: absolute;
+  top: 190px;
+  right: 38px;
+  width: 615px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 12px;
+  background: #111821;
+  box-shadow: 0 36px 75px rgba(0,0,0,.58), 0 0 0 8px rgba(255,255,255,.025);
+  transform: perspective(1100px) rotateY(-2deg) rotateX(1deg);
+  overflow: hidden;
+  z-index: 5;
+}
+
+.real-popup-crop {
+  position: relative;
+  width: 615px;
+  height: 323px;
+  overflow: hidden;
+  background: #1e1e1e;
+}
+
+.real-popup-crop img {
+  position: absolute;
+  width: 615px;
+  max-width: none;
+  height: auto;
+  left: 0;
+  top: 0;
+}
+
+/* 440×280 promotional tile. */
+html[data-asset="promo"] .artboard { width: 440px; height: 280px; }
+.promo {
+  background: radial-gradient(circle at 25% 54%, #203424 0, #101820 43%, #080c12 100%);
+}
+.promo::after { box-shadow: inset 0 0 55px rgba(0,0,0,.58); }
+.promo-grid {
+  position: absolute;
+  inset: 0;
+  opacity: .38;
+  background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.promo-orange { width: 260px; height: 260px; left: -150px; top: 100px; filter: blur(54px); opacity: .23; }
+.promo-green { width: 260px; height: 260px; left: -80px; top: 20px; filter: blur(54px); opacity: .2; }
+.promo-nas {
+  position: absolute;
+  left: 9px;
+  top: 29px;
+  width: 226px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 25px rgba(0,0,0,.52));
+  z-index: 3;
+}
+
+.promo-name {
+  position: absolute;
+  left: 245px;
+  right: 10px;
+  top: 69px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #f5f7fa;
+  text-shadow: 0 8px 24px rgba(0,0,0,.5);
+  z-index: 3;
+}
+
+.promo-name strong {
+  font-size: 35px;
+  font-weight: 750;
+  line-height: .98;
+  letter-spacing: -1.4px;
+}
+
+.promo-name small {
+  margin-top: 9px;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.55px;
+}

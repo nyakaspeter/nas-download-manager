@@ -29,7 +29,7 @@ Check the bottom of the extension's setting page for a "Debugging Output" sectio
 
 ### Versions
 
-**Extension version**: (visible in Synology Download Manager's settings)
+**Extension version**: (visible in NAS Download Manager's settings)
 
 **Browser version**: (usually found in the browser's "About")
 
