@@ -129,9 +129,9 @@ export class SettingsForm extends React.PureComponent<Props, State> {
                 this.saveSettings({ themeMode: e.currentTarget.value as ThemeMode });
               }}
             >
-              <option value="auto">{browser.i18n.getMessage("Theme_auto")}</option>
-              <option value="light">{browser.i18n.getMessage("Theme_light")}</option>
-              <option value="dark">{browser.i18n.getMessage("Theme_dark")}</option>
+              <option value="auto">{browser.i18n.getMessage("Auto")}</option>
+              <option value="light">{browser.i18n.getMessage("Light")}</option>
+              <option value="dark">{browser.i18n.getMessage("Dark")}</option>
             </select>
           </li>
         </SettingsList>

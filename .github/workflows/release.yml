@@ -1,16 +1,14 @@
-name: Build
+name: Release
 
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    tags: ["v*"]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -30,9 +28,12 @@ jobs:
         id: version
         run: node -e "console.log('version=' + require('./manifest.json').version)" >> "$GITHUB_OUTPUT"
 
-      - name: Upload packages
-        uses: actions/upload-artifact@v7
+      - name: Verify tag matches manifest
+        run: test "$GITHUB_REF_NAME" = "v${{ steps.version.outputs.version }}"
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
         with:
-          name: nas-download-manager-${{ steps.version.outputs.version }}
-          path: artifacts/*.zip
-          if-no-files-found: error
+          files: artifacts/*.zip
+          generate_release_notes: true
+          make_latest: true

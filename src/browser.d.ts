@@ -193,9 +193,7 @@ declare const browser: {
     update: (id: number | string, options?: ContextMenusCreateOptions) => Promise<void>;
     removeAll: () => Promise<void>;
     onClicked: {
-      addListener: (
-        listener: (info: ContextMenusOnClickData, tab?: Tab) => void,
-      ) => void;
+      addListener: (listener: (info: ContextMenusOnClickData, tab?: Tab) => void) => void;
     };
   };
   alarms: {

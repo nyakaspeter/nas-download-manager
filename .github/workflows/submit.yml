@@ -1,16 +1,17 @@
-name: Build
+name: Submit to Web Stores
 
 on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: web-store-submission
+  cancel-in-progress: false
+
 jobs:
-  build:
+  submit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -30,9 +31,10 @@ jobs:
         id: version
         run: node -e "console.log('version=' + require('./manifest.json').version)" >> "$GITHUB_OUTPUT"
 
-      - name: Upload packages
-        uses: actions/upload-artifact@v7
+      - name: Submit extension
+        uses: PlasmoHQ/bpp@v3
         with:
-          name: nas-download-manager-${{ steps.version.outputs.version }}
-          path: artifacts/*.zip
-          if-no-files-found: error
+          keys: ${{ secrets.SUBMIT_KEYS }}
+          artifact: artifacts/nas-download-manager-${{ steps.version.outputs.version }}.zip
+          source: artifacts/nas-download-manager-${{ steps.version.outputs.version }}-sources.zip
+          version-file: manifest.json

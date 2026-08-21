@@ -1,135 +1,124 @@
-# NAS Download Manager
+# Synology Download Manager
 
-> An open source browser extension for adding/managing download tasks to your Synology DiskStation.
+An open source browser extension for adding and managing Synology Download Station tasks from your browser.
 
-[![Donate](https://img.shields.io/badge/Donate%20$2-PayPal-brightgreen.svg)](https://paypal.me/downloadmanager/2)
+This repository is a maintained fork of [seansfkelley/nas-download-manager](https://github.com/seansfkelley/nas-download-manager). It keeps the original extension's functionality while updating it for current Chromium extension APIs and adding several quality-of-life improvements.
 
-## 🔧 Maintenance Mode 🔧
+Synology Download Manager requires a Synology NAS running DSM 4 or newer. It is not an official Synology product.
 
-NAS Download Manager is in maintenance mode. See [the announcement](https://github.com/seansfkelley/nas-download-manager/issues/227) for details.
+## Changes in this fork
 
-## Having an Issue?
+Compared with the upstream project at the point this fork diverged, this version includes:
 
-If you're here because of an issue with the extension, please check the [FAQ](./FAQ.md) first. If you can't find an answer there, feel free to [open an issue](https://github.com/seansfkelley/nas-download-manager/issues)!
+- Manifest V3 support for current Chrome and Chromium-based browsers.
+- A Webpack-based build that is compatible with the Manifest V3 service-worker background process.
+- Alarm-based background polling and session persistence across service-worker restarts.
+- A light, dark, or system-controlled theme.
+- A choice between HTTPS and HTTP when connecting to a NAS. HTTPS remains strongly recommended because HTTP sends NAS credentials and traffic without transport encryption.
+- More frequent popup refreshes and fixes for content-script startup and release packaging.
+- pnpm-based, cross-platform development and packaging commands.
+- GitHub Actions for validation, versioned release archives, GitHub Releases, and manual web-store submission.
 
-## About
+The upstream project and its contributors remain the source of the extension's core functionality. See the [upstream repository](https://github.com/seansfkelley/nas-download-manager) for its history.
 
-NAS Download Manager allows you to add and manage your download tasks on your Synology DiskStation right from your browser. It requires a Synology NAS with DSM version 4 or higher.
+## Features
 
-Please note that NAS Download Manager is not an official Synology offering.
-
-### Features
-
-- Right-click and download many types of media (`<video>` and `<audio>` tags) and files (e.g. `.torrent` files).
+- Right-click and download media, files such as `.torrent` files, and selected URLs.
+- Add, pause, resume, remove, filter, and sort download tasks from the popup.
+- Choose a destination folder for new tasks.
 - Clear all completed tasks with one click.
-- Choose destination folder for new download tasks.
-- View, filter and sort all the current download tasks in the extension popup.
-- Add/pause/resume/remove download tasks in the extension popup.
-- System notifications for completed download tasks.
-- Open some types of links (e.g. `magnet:`) in the extension rather than a desktop application.
+- Show system notifications when tasks complete.
+- Open supported links such as `magnet:` links in the extension instead of a desktop application.
+- Display the active or completed task count on the extension badge.
 
-### Officially Supported Browsers
+## Browser support
 
-- Firefox ([view listing](https://addons.mozilla.org/en-US/firefox/addon/nas-download-manager/))
+This fork targets Manifest V3 in Chrome 120 or newer and other compatible Chromium-based browsers. The original project's [Firefox Add-ons listing](https://addons.mozilla.org/en-US/firefox/addon/nas-download-manager/) and [legacy Chrome Web Store listing](https://chrome.google.com/webstore/detail/nas-download-manager/iaijiochiiocodhamehbpmdlobhgghgi) are maintained separately and do not distribute builds from this fork.
 
-### Unsupported Browsers
-
-The following browsers were supported in earlier versions, but made breaking changes since the extension was released.
-
-- Chrome ([view listing](https://chrome.google.com/webstore/detail/nas-download-manager/iaijiochiiocodhamehbpmdlobhgghgi))
-- Edge (see [how to install from Chrome Web Store](https://support.microsoft.com/en-us/help/4538971/microsoft-edge-add-or-remove-extensions) and use the Chrome link above)
-- Opera (using the [Install Chrome Extensions](https://addons.opera.com/en/extensions/details/install-chrome-extensions/) extension to install from the Chrome link above)
-
-There are currently no plans to support the following browsers.
-
-- Safari
+Until a store listing for this fork is available, download a package from this repository's [Releases](https://github.com/nyakaspeter/nas-download-manager/releases) or build it locally. To load an unpacked build in Chrome, open `chrome://extensions`, enable **Developer mode**, choose **Load unpacked**, and select the repository root after running `pnpm build`.
 
 ## Privacy
 
-NAS Download Manager needs your login credentials to communicate with your NAS. It doesn't collect, store or transmit any other information. [Read more.](./PRIVACY.md)
+Synology Download Manager needs credentials for your NAS so it can communicate with Download Station. It stores extension settings locally and does not collect analytics or transmit personal information anywhere other than the NAS address you configure. See the [privacy policy and permission explanations](./PRIVACY.md).
 
 ## Development
 
-Please note that development is not actively supported on Windows. Some of the below commands may fail and require manually invoking an analogous Windows command instead.
-
 ### Prerequisites
 
-Dependencies are managed with [Yarn](https://github.com/yarnpkg/yarn). Install it if you don't already have it.
+- Node.js 20 or newer.
+- [pnpm](https://pnpm.io/installation) 11 or newer. The exact version used by this repository is recorded in `package.json`.
 
-### Actively Developing the Extension
+### Install and develop
 
-These instructions describe how to build and automatically re-build the assets for the extension for quick iteration during active development. For building, optimizing and packaging the extension for distribution, see the next section.
+Install dependencies:
 
-Please note that while the build tasks will auto-recompile, the browser may not pick up changes automatically. In particular, changes to code running in the extension's background generally requires you to explicitly refresh the extension (for which there is usually a button in the debugging interface). Changes to language support may require you to remove the development extension entirely and re-add it.
-
-1. Install dependencies.
-
-    ```
-    yarn
-    ```
-
-2. Start a build to watch files and auto-recompile code on change.
-
-    ```
-    yarn watch
-    ```
-
-3. In your browser, navigate to the extension debugging page and open `manifest.json`.
-
-    **Firefox**: `about:debugging` > This Firefox > Load Temporary Add-on...
-
-    ~~**Chrome**: `about:extensions` > Enable "Developer mode" > Load unpacked~~
-
-### Packing the Extension for Distribution
-
-1. Install dependencies.
-
-    ```
-    yarn
-    ```
-
-2. Build and optimize all assets.
-
-    ```
-    yarn build
-    ```
-
-3. Zip all assets into a file suitable for distribution.
-
-    ```
-    yarn zip
-    ```
-
-4. _(Optional)_ Zip all source code into a file suitable for distribution.
-
-    ```
-    yarn zip-sources
-    ```
-
-### Translating the Extension
-
-I need help localizing NAS Download Manager! Read in detail about [how to localize WebExtensions](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Internationalization), or skip to the sections below for short summaries.
-
-#### Adding a New Language
-
-In order to add the new language, base your translation file off the English messages file.
-
-1. Copy `_locales/en/messages.json` into a new file at `_locales/<your language code>/messages.json`.
-2. Edit the `message` field in each item with your translation.
-3. In `src/common/moment.ts`, add a new import line like `import "moment/locale/<your language code>";`.
-4. Load (or reload) the extension to test it out. You may need to remove the extension entirely and then re-add it for changes to be reflected.
-5. Open a pull request!
-
-There are automated checks to ensure that you're only defining translated strings that the extension actually uses.
-
-#### Editing an Existing Language
-
-If you're adding more strings for an incomplete translation, you can use `./scripts/diff-messages <your language code>` to get a list of all the entries you need to add to the `messages.json` in a format that is easily copy-pasted:
-
+```bash
+pnpm install --frozen-lockfile
 ```
-$ ./scripts/diff-messages ru
-"Badge_shows": {
-  "message": "Badge shows",
-  "description": "Prefix text for badge-display-type dropdown."
-},
+
+Start Webpack in watch mode:
+
+```bash
+pnpm watch
 ```
+
+Load `manifest.json` as an unpacked extension from the browser's extension debugging page. Background service-worker changes generally require reloading the extension from that page.
+
+Run all static checks and tests:
+
+```bash
+pnpm check
+```
+
+Build an optimized production bundle:
+
+```bash
+pnpm build
+```
+
+### Package the extension
+
+Create a production build and a store-ready archive:
+
+```bash
+pnpm package
+```
+
+Create the corresponding source archive for stores that request it:
+
+```bash
+pnpm package:sources
+```
+
+Both commands write versioned files to `artifacts/`. The extension archive contains `manifest.json` at its root and only the files needed at runtime.
+
+## Releases and web-store publishing
+
+The `Build` workflow validates every push and pull request and retains the packaged extension and source archives as workflow artifacts.
+
+To prepare a release, start from a clean working tree and run:
+
+```bash
+pnpm bump-version patch
+git push origin master --follow-tags
+```
+
+Use `minor` or `major` instead of `patch` when appropriate. The command updates both `manifest.json` and `package.json`, creates the version commit, and creates an annotated `v<version>` tag. Pushing that tag runs the `Release` workflow, which validates the project and attaches both archives to a GitHub Release.
+
+Store submission is intentionally manual:
+
+1. Create each store listing and upload its first version manually so the listing and API credentials exist.
+2. Add a repository Actions secret named `SUBMIT_KEYS` containing the [Browser Platform Publisher configuration](https://github.com/PlasmoHQ/bpp#usage). Include configuration only for stores that should receive this build.
+3. In GitHub Actions, run the **Submit to Web Stores** workflow for the tagged commit you want to publish.
+
+The workflow builds from the lockfile, runs all checks, packages the extension, and passes both the runtime and source archives to Browser Platform Publisher. Store credentials remain in the encrypted GitHub secret.
+
+## Translating the extension
+
+To add a language, copy `_locales/en/messages.json` to `_locales/<language code>/messages.json`, translate each `message` value, import the matching Moment locale in `src/common/moment.ts`, and reload the extension to test it.
+
+For an existing translation, `./scripts/diff-messages <language code>` prints missing entries in a copyable format.
+
+## License
+
+Synology Download Manager is available under the [MIT License](./LICENSE). The fork retains the upstream project's license and attribution history.

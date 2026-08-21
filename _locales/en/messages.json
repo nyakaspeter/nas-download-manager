@@ -396,18 +396,6 @@
     "message": "Notify when downloads complete",
     "description": "Label for option on settings page."
   },
-  "Check_for_completed_downloads_every": {
-    "message": "Check for completed downloads every",
-    "description": "Prefix for inlined notification interval setting field."
-  },
-  "seconds": {
-    "message": "seconds",
-    "description": "Suffix for inlined notification interval setting field."
-  },
-  "at_least_30": {
-    "message": "(at least 30)",
-    "description": "Error message when notification interval is too short."
-  },
   "Handle_opening_downloadable_link_types_ZprotocolsZ": {
     "message": "Handle opening downloadable link types ($PROTOCOLS$)",
     "description": "Label for option on settings page.",
@@ -764,15 +752,15 @@
     "message": "Theme",
     "description": "Label for theme mode selector in settings."
   },
-  "Theme_auto": {
+  "Auto": {
     "message": "Auto",
     "description": "Theme option that follows system preference."
   },
-  "Theme_light": {
+  "Light": {
     "message": "Light",
     "description": "Light theme option."
   },
-  "Theme_dark": {
+  "Dark": {
     "message": "Dark",
     "description": "Dark theme option."
   }

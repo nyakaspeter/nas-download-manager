@@ -11,6 +11,7 @@ import type { State as State_4 } from "../src/common/state/migrations/4";
 import type { State as State_5 } from "../src/common/state/migrations/5";
 import type { State as State_6 } from "../src/common/state/migrations/6";
 import type { State as State_7 } from "../src/common/state/migrations/7";
+import type { State as State_9 } from "../src/common/state/migrations/9";
 
 interface PreVersioningState_0 {
   connection: {
@@ -63,10 +64,22 @@ const DUMMY_TASK: DownloadStationTask = {
 function testMigration<T>(before: T, after: State_7) {
   const originalBefore = cloneDeep(before);
   const transitioned = migrateState(before);
+  const latestAfter: State_9 = {
+    ...after,
+    settings: {
+      ...after.settings,
+      connection: {
+        ...after.settings.connection,
+        protocol: "https",
+      },
+      themeMode: "auto",
+    },
+    stateVersion: 9,
+  };
 
   expect(before).to.not.deep.equal(after);
   expect(before).to.deep.equal(originalBefore);
-  expect(transitioned).to.deep.equal(after);
+  expect(transitioned).to.deep.equal(latestAfter);
 }
 
 describe("state versioning", () => {
@@ -748,9 +761,10 @@ describe("state versioning", () => {
   });
 
   it("should do nothing when the state is already latest", () => {
-    const before: State_7 = {
+    const before: State_9 = {
       settings: {
         connection: {
+          protocol: "https",
           hostname: "hostname",
           port: 0,
           username: "username",
@@ -773,13 +787,14 @@ describe("state versioning", () => {
         badgeDisplayType: "total",
         showInactiveTasks: true,
         shouldHandleDownloadLinks: true,
+        themeMode: "auto",
       },
       tasks: [DUMMY_TASK],
       taskFetchFailureReason: "missing-config",
       tasksLastCompletedFetchTimestamp: 0,
       tasksLastInitiatedFetchTimestamp: 0,
       lastSevereError: undefined,
-      stateVersion: 7,
+      stateVersion: 9,
     };
 
     expect(migrateState(before)).to.equal(before);

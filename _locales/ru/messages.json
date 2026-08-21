@@ -352,18 +352,6 @@
     "message": "Уведомлять о завершении загрузки",
     "description": "Метка для опции на странице настроек."
   },
-  "Check_for_completed_downloads_every": {
-    "message": "Проверять каждую завершённую загрузку",
-    "description": "Префикс для встроенного поля настройки интервала уведомления."
-  },
-  "seconds": {
-    "message": "секунд",
-    "description": "Суффикс для встроенного поля настройки интервала уведомления."
-  },
-  "at_least_30": {
-    "message": "(не менее 30)",
-    "description": "Сообщение об ошибке, когда интервал уведомления слишком короткий."
-  },
   "Handle_opening_downloadable_link_types_ZprotocolsZ": {
     "message": "Работа с открывающимися загружаемыми типами ссылок ($PROTOCOLS$)",
     "description": "Метка для опции на странице настроек.",
@@ -638,15 +626,15 @@
     "message": "Тема",
     "description": "Label for theme mode selector in settings."
   },
-  "Theme_auto": {
+  "Auto": {
     "message": "Авто",
     "description": "Theme option that follows system preference."
   },
-  "Theme_light": {
+  "Light": {
     "message": "Светлая",
     "description": "Light theme option."
   },
-  "Theme_dark": {
+  "Dark": {
     "message": "Тёмная",
     "description": "Dark theme option."
   }
